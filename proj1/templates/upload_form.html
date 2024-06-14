@@ -1,0 +1,129 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Data{% endblock %}
+
+{% block content %}
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url("{% static 'images/bg5.jpg' %}");/* Background image */
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+        padding: 0;
+        height: 100vh;
+    }
+
+    .upload-container {
+        max-width: 500px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .upload-title {
+        text-align: center;
+        margin-bottom: 20px;
+        color: #333;
+    }
+
+    .upload-form {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .upload-form label {
+        margin-bottom: 10px;
+        cursor: pointer;
+    }
+
+    .upload-form input[type="file"] {
+        display: none;
+    }
+
+    .upload-button {
+        background-color: #007bff;
+        color: #fff;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+
+    .upload-button:hover {
+        background-color: #0056b3;
+    }
+
+    .cloud-container {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #e0e0e0;
+        color: #666;
+        padding: 20px;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        border: 2px dashed #aaa;
+    }
+
+    .cloud-container:hover {
+        background-color: #c0c0c0;
+    }
+
+    .cloud-icon {
+        font-size: 24px;
+        margin-right: 10px;
+    }
+
+    .upload-instructions {
+        font-size: 14px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .file-preview {
+        margin-top: 20px;
+        text-align: center;
+    }
+</style>
+
+<div class="upload-container">
+    <h2 class="upload-title">Upload CSV File</h2>
+    <form id="uploadForm" method="post" enctype="multipart/form-data" class="upload-form">
+        {% csrf_token %}
+        <label for="id_file" class="cloud-container">
+            <span class="cloud-icon">&#9729;</span> <span id="selected-file">Drag and Drop File or Click to Select</span>
+            <input type="file" name="file" id="id_file" style="display: none;">
+        </label>
+        <button type="submit" id="uploadButton" class="upload-button">Upload</button>
+        <p class="upload-instructions">Supported file types: CSV</p>
+        <div class="file-preview"></div>
+    </form>
+</div>
+
+<script>
+    document.getElementById('id_file').addEventListener('change', function() {
+        var fileInput = document.getElementById('id_file');
+        var fileName = document.getElementById('selected-file');
+        fileName.textContent = fileInput.files[0].name;
+    });
+
+    document.getElementById('uploadForm').addEventListener('submit', function(event) {
+        var fileInput = document.getElementById('id_file');
+        if (fileInput.files.length === 0) {
+            event.preventDefault(); // Prevent form submission
+            alert('Please select a file.'); // Show alert message
+        }
+    });
+</script>
+
+{% endblock %}

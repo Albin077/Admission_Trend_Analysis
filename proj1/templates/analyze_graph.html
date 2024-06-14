@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block title %}Analysis and Visualization{% endblock %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Graph</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url("{% static 'images/bg5.jpg' %}"); /* Background image */
+            background-size: cover; /* Cover the entire background */
+            color: #fff; /* White text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            margin-top: 5cm;
+        }
+
+        .container {
+            max-width: 800px; /* Adjusted container width */
+            margin: 20px;
+            padding: 40px;
+            background-color: rgba(30, 30, 30, 0.9); /* Semi-transparent black background */
+            border-radius: 20px; /* Rounded container corners */
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
+        }
+
+        h2 {
+            font-size: 36px; /* Larger font size */
+            margin-bottom: 20px;
+            color: #ff7f50; /* Coral color for header */
+        }
+
+        p {
+            font-size: 24px; /* Larger font size */
+            margin-bottom: 30px;
+        }
+
+        img {
+            max-width: 100%; /* Adjusted chart width */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Course Trend</h2>
+
+    <!-- Display the chart -->
+    <img src="data:image/png;base64,{{ graph_base64 }}" alt="Chart">
+</div>
+</body>
+</html>
+{% endblock %}

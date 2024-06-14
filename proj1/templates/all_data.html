@@ -1,0 +1,75 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}All Data{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Data</title>
+    <link rel="stylesheet" href="{% static 'css/all_data.css' %}">
+    <style>
+        body {
+            background: url("{% static 'images/bg5.jpg' %}"); /* Background image */
+            background-size: cover; /* Cover the entire background */
+            margin-top: 5cm;
+            /* Remove overflow: hidden; to make the page scrollable */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>CSV Data</h1>
+        <form method="get">
+            <label for="sort_by">Sort By:</label>
+            <select name="sort_by" id="sort_by">
+                <option value="Campus_id">SID</option>
+                <option value="Gender">Gender</option>
+                <option value="Batch">Entry Academic Period</option>
+                <option value="Address">Place</option>
+                <option value="PUC_Background">PUC Background</option>
+                <option value="Course">Course</option>
+            </select>
+            <button type="submit">Sort</button>
+        </form>
+        
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>Campus id</th>
+                    <th>Name</th>
+                    <th>Age</th>
+                    <th>Gender</th>
+                    <th>Address</th>
+                    <th>Entry Academic Period</th>
+                    <th>PUC Background</th>
+                    <th>PUC Mark</th>
+                    <th>Course</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in data %}
+                <tr>
+                    <td>{{ item.Campus_id }}</td>
+                    <td>{{ item.Name }}</td>
+                    <td>{{ item.Age }}</td>
+                    <td>{{ item.Gender }}</td>
+                    <td>{{ item.Address }}</td>
+                    <td>{{ item.PUC_Background }}</td>
+                    <td>{{ item.PUC_Marks }}</td>
+                    <td>{{ item.Batch }}</td>
+                    <td>{{ item.Course }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
+{% endblock %}

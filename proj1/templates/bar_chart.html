@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Analysis_and_visualisation
+{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Histogram</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background: url("{% static 'images/bg5.jpg' %}"); /* Background image */
+            background-size: cover; /* Cover the entire background */
+            color: #fff; /* White text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            margin-top: 5cm;
+            /* Remove overflow: hidden; to make the page scrollable */
+        }
+
+        .container {
+            max-width: 900px; /* Adjusted container width */
+            padding: 50px; /* Increased padding */
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent black background */
+            border-radius: 30px; /* Larger border radius */
+            box-shadow: 0 8px 40px 0 rgba(0, 0, 0, 0.5); /* Soft shadow */
+        }
+
+        h2 {
+            margin-top: 0;
+            font-size: 42px; /* Larger font size */
+        }
+
+        p {
+            font-size: 28px; /* Larger font size */
+        }
+
+        img {
+            max-width: 100%;
+            margin-top: 40px; /* Increased margin */
+            border-radius: 20px; /* Slightly larger border radius */
+            box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.5); /* Soft shadow */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>Course and Admission Year</h2>
+
+        <!-- Display the chart -->
+        <img src="data:image/png;base64,{{ chart_base64 }}" alt="Chart">
+        <!-- Add more analysis results or charts as needed -->
+    </div>
+</body>
+
+</html>
+{% endblock %}

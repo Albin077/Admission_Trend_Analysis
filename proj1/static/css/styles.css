@@ -1,0 +1,104 @@
+/* Reset default styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body and HTML styles */
+body, html {
+    font-family: Arial, sans-serif;
+}
+
+/* Navbar styles */
+.navbar {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    /* Adjust as needed */
+    margin-left: 20px; /* Add margin to push it towards the left */
+}
+
+.center-text {
+    /* Adjust as needed */
+    margin-right: 20px; /* Add margin to push it towards the right */
+}
+
+
+/* Toggle button styles */
+.toggle-btn {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.toggle-btn span {
+    height: 3px;
+    width: 30px;
+    background-color: white;
+    margin: 3px 0;
+}
+
+
+/* Sidebar styles */
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Off-screen initially */
+    background-color: #111;
+    transition: left 0.3s;
+    padding-top: 60px; /* Space for the navbar */
+}
+.sidebar {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    top: 0;
+    left: -250px; /* Off-screen initially */
+    background-image: url('your-background-image.jpg'); /* Replace 'your-background-image.jpg' with the path to your background image */
+    background-size: cover;
+    transition: left 0.3s;
+    padding-top: 60px; /* Space for the navbar */
+}
+
+
+.sidebar.active {
+    left: 0; /* Slide in when active */
+}
+
+/* Sidebar menu styles */
+.sidebar-menu {
+    list-style-type: none;
+    padding: 0;
+}
+
+.sidebar-menu li {
+    padding: 10px 0;
+}
+
+.sidebar-menu li a {
+    color: white;
+    text-decoration: none;
+    display: block;
+    padding: 10px;
+}
+
+.sidebar-menu li a:hover {
+    background-color: #555;
+    border-radius: 5px;
+}
+

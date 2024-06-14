@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Combined Pie Charts{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Homepage</title>
+<style>
+ body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 5cm; /* Add a 5cm margin at the top */
+    background-image: url("{% static 'images/background.jpg' %}");
+    background-size: cover; /* Cover the entire background */
+    background-position: center; /* Center the background image */
+    opacity: 0.8; 
+}
+
+/* Container for icons */
+.icon-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* Three columns in the grid */
+    gap: 5px; /* Increased gap between icons */
+    justify-content: center;
+    align-items: center;
+    margin: 20px auto; /* Add margin for better spacing and center alignment */
+    width: 650px; /* Set the width of the icon container */
+    height: 450px; /* Set the height of the icon container */
+    background-color: rgba(255, 255, 255, 0.7); /* Set the background color with low opacity */
+    padding: 15px; /* Add padding to the container */
+    border-radius: 10px; /* Add rounded corners */
+}
+/* Styling for icon images */
+.icon img {
+    width: 80px; /* Set the width of the icon images */
+    height: auto; /* Maintain aspect ratio */
+    transition: transform 0.3s ease; /* Add transition effect */
+}
+
+/* Styling for icon names */
+.icon-name {
+    text-align: center; /* Center-align the icon names */
+    margin-top: 10px; /* Add margin space between icon image and name */
+    font-size: 14px; /* Adjust font size as needed */
+    color: transparent; /* Set initial color of icon names to transparent */
+    transition: color 0.3s ease; /* Add transition effect for color change */
+}
+
+/* Hover effect for icons */
+.icon:hover img {
+    transform: scale(1.1); /* Increase size on hover */
+}
+
+/* Show icon name on hover */
+.icon:hover .icon-name {
+    color: #333; /* Change color on hover */
+}
+
+/* Remove underline from hyperlink */
+.icon a {
+    text-decoration: none; /* Remove underline */
+    display: inline-block; /* Ensure proper layout */
+}
+
+/* Add more styles as needed */
+</style>
+</head>
+<body>
+
+<!-- Icon container -->
+<div class="icon-container">
+    <!-- First row of icons -->
+    <div class="icon">
+        <a href="{% url 'all_data' %}">
+            <img src="{% static 'images/table.jpg' %}" alt="Table">
+            <div class="icon-name">    Table    </div>
+        </a>
+    </div>
+
+    <div class="icon">
+        <a href="{% url 'upload_csv' %}">
+            <img src="{% static 'images/upload.png' %}" alt="Upload">
+            <div class="icon-name">    Upload CSV    </div>
+        </a>
+    </div>
+
+    <div class="icon">
+        <a href="{% url 'barchart' %}">
+            <img src="{% static 'images/barchart.png' %}" alt="Bar Chart">
+            <div class="icon-name">    Histogram    </div>
+        </a>
+    </div>
+
+    <!-- Second row of icons -->
+    <div class="icon">
+        <a href="{% url 'combined_pie_charts' %}">
+            <img src="{% static 'images/piechart.jpg' %}" alt="Pie Chart">
+            <div class="icon-name">    Pie Chart    </div>
+        </a>
+    </div>
+
+    <div class="icon">
+        <a href="{% url 'analyze_graph' %}">
+            <img src="{% static 'images/graph.png' %}" alt="Graph">
+            <div class="icon-name">    Graph    </div>
+        </a>
+    </div>
+
+    <div class="icon">
+        <a href="{% url 'google_form' %}">
+            <img src="{% static 'images/qrcode.png' %}" alt="Google Form">
+            <div class="icon-name">    QR Code    </div>
+        </a>
+    </div>
+
+    <!-- Centered icon -->
+    <div class="icon">
+        <a href="{% url 'visualize_student_heatmap' %}">
+            <img src="{% static 'images/map.png' %}" alt="Heatmap">
+            <div class="icon-name">    Heatmap    </div>
+        </a>
+    </div>
+</div>
+
+</body>
+</html>
+
+{% endblock %}

@@ -1,0 +1,69 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Success</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-image: url("{% static 'images/bg5.jpg' %}"); /* Background image */
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+        }
+
+        h2 {
+            color: #007bff;
+        }
+
+        .success-message {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 500px;
+            margin: 50px auto;
+        }
+
+        p {
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            display: flex;
+            justify-content: center;
+        }
+
+        .option-button {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        .option-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="success-message">
+        <h2>CSV File Upload Successful</h2>
+        <p>Your CSV file has been successfully uploaded.</p>
+        <div class="options">
+            <a href="{% url 'upload_csv' %}" class="option-button">Add Another File</a>
+            <a href="{% url 'all_data' %}" class="option-button">Go to Data Table</a>
+        </div>
+    </div>
+</body>
+</html>

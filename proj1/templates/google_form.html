@@ -1,0 +1,127 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}google form{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Form Link and QR Code</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            background-image: url("{% static 'images/bg5.jpg' %}"); /* Replace 'your-background-image.jpg' with the path to your background image */
+            background-size: cover;
+            background-position: center;
+          
+        }
+
+        .container {
+            text-align: center;
+        }
+
+        h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #333;
+            margin-bottom: 40px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s;
+        }
+
+        a:hover {
+            color: #0056b3;
+        }
+
+        #qr_code_img {
+            margin: 0 auto;
+            display: block;
+            border: 4px solid #4CAF50;
+            border-radius: 10px;
+            width: 300px;
+            height: auto;
+        }
+
+        #share_whatsapp_button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            margin-top: 20px;
+            transition: background-color 0.3s;
+        }
+
+        #share_whatsapp_button:hover {
+            background-color: #45a049;
+        }
+
+        .google-form-link {
+            margin-top: 40px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Google Form Link:</h1>
+        <p class="google-form-link"><a href="{{ google_form_url }}">Click here to go to Google Form</a></p>
+
+        <h2>QR Code:</h2>
+        <img id="qr_code_img" src="data:image/png;base64,{{ qr_code_img_base64 }}" alt="QR Code for Google Form">
+        
+        <!-- Button for sharing the QR code image via device's native sharing -->
+        <button id="share_whatsapp_button">Share QRCode</button>
+    </div>
+    
+    <script>
+        // Function to share the QR code image via device's native sharing
+        document.getElementById('share_whatsapp_button').addEventListener('click', function() {
+            var qrCodeImgSrc = document.getElementById('qr_code_img').src;
+            fetch(qrCodeImgSrc)
+                .then(response => response.blob())
+                .then(blob => {
+                    var file = new File([blob], 'qr_code.png', { type: blob.type });
+                    var filesArray = [file];
+                    if (navigator.canShare && navigator.canShare({ files: filesArray })) {
+                        navigator.share({
+                            files: filesArray,
+                            title: 'QR Code for Google Form',
+                            text: 'Check out this QR code:'
+                        }).then(() => {
+                            console.log('Image shared successfully');
+                        }).catch(error => {
+                            console.error('Error sharing image:', error);
+                        });
+                    } else {
+                        console.error('Native sharing not supported');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error fetching image:', error);
+                });
+        });
+    </script>
+</body>
+</html>
+{% endblock %}

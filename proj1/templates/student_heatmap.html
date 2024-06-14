@@ -1,0 +1,56 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Combined Pie Charts{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Heatmap</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-image: url("{% static 'images/bg5.jpg' %}");/* Background image */
+            background-size: cover;
+            background-position: center;
+            color: #fff; /* White text color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 0;
+            margin-top: 5cm;
+        }
+
+        .container {
+            text-align: center;
+            padding: 40px;
+            border-radius: 20px;
+            background-color: rgba(0, 0, 0, 0.8); /* Semi-transparent black background */
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1); /* Soft white shadow */
+        }
+
+        h1 {
+            font-size: 36px; /* Larger font size */
+            margin-bottom: 20px;
+            color: #f8b500; /* Yellow color for header */
+        }
+
+        img {
+            max-width: 80%; /* Adjusted chart width */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.5); /* Soft shadow */
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Student Heatmap by Place</h1>
+    <img src="data:image/png;base64,{{ chart_base64 }}" alt="Student Heatmap">
+</div>
+</body>
+</html>
+{% endblock %}

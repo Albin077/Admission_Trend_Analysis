@@ -1,0 +1,102 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Combined Pie Charts{% endblock %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Combined Pie Charts</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-image: url("{% static 'images/bg5.jpg' %}");
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            margin-top: 5cm;
+        }
+        .container {
+            max-width: 1000px; /* Adjust the max-width as needed */
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+            background-color: rgba(0, 0, 0, 0.6); /* Semi-transparent background */
+        }
+        h1, h2 {
+            text-align: center;
+            color: #00ffcc;
+        }
+        .chart-row {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .chart {
+            width: 45%;
+            margin: 10px;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+        .chart img {
+            width: 100%;
+            display: block;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pie Chart Analysis</h1>
+
+        <div class="chart-row">
+            <div class="chart">
+                <h2>Gender Distribution</h2>
+                <img src="data:image/png;base64,{{ gender_chart_base64 }}" alt="Gender Distribution">
+            </div>
+
+            <div class="chart">
+                <h2>Place Distribution</h2>
+                <img src="data:image/png;base64,{{ place_chart_base64 }}" alt="Place Distribution">
+            </div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart">
+                <h2>PUC Background </h2>
+                <img src="data:image/png;base64,{{ puc_background_chart_base64 }}" alt="PUC Background Distribution">
+            </div>
+            
+            <div class="chart">
+                <h2>Courses Taken</h2>
+                <img src="data:image/png;base64,{{ course_chart_base64 }}" alt="Courses Taken">
+            </div>
+        </div>
+
+        <div class="chart-row">
+            <div class="chart">
+                <h2>Age Distribution</h2>
+                <img src="data:image/png;base64,{{ age_chart_base64 }}" alt="Age Distribution">
+            </div>
+
+            <div class="chart">
+                <h2>PUC Marks</h2>
+                <img src="data:image/png;base64,{{ puc_mark_chart_base64 }}" alt="PUC Marks Distribution">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
